@@ -1,3 +1,4 @@
+import { randomUUID } from "node:crypto";
 import fs from "node:fs";
 import { createRequire } from "node:module";
 import path from "node:path";
@@ -95,8 +96,11 @@ export async function createMigration(
   const migrationSchema = opts.migrationSchema ?? "migrator_internal";
   const excludeSchema = opts.excludeSchema ?? [migrationSchema];
 
-  const desiredDbName = `migration_desired_${process.pid}`;
-  const currentDbName = `migration_current_${process.pid}`;
+  // Use a unique suffix so parallel `createMigration` calls (e.g. several
+  // tests in the same suite) don't collide on these temp database names.
+  const suffix = randomUUID().replace(/-/g, "");
+  const desiredDbName = `migration_desired_${suffix}`;
+  const currentDbName = `migration_current_${suffix}`;
 
   const adminPool = new pg.Pool({ connectionString: opts.databaseUrl });
 
