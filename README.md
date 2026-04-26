@@ -23,7 +23,7 @@ It lets you keep authoring your schema in Drizzle while running migrations with 
 
 1. **`generate-schema`** — turns your Drizzle schema (plus optional raw-SQL snippets) into a single `schema.sql` describing the desired state.
 2. **`create`** — spins up two throwaway databases (one from `schema.sql`, one from your existing migrations) and uses `@pgkit/migra` to write a new migration containing the diff.
-3. **`migrate up|down|list|...`** — runs `@pgkit/migrator` against your real database. Subcommands and flags are forwarded to pgkit's own CLI.
+3. **`migrate up|down|list|pending|executed`** — runs `@pgkit/migrator` against your real database. Subcommands and flags are forwarded to pgkit's own CLI.
 4. **`backfill`** — for repos switching off `drizzle-kit` migrations: copies the existing `drizzle.__drizzle_migrations` history into the pgkit migrations table so they're treated as already applied.
 
 ## Install
@@ -66,9 +66,9 @@ Use `--exit-code` instead of `--name` to fail CI when there's drift but write no
 ```sh
 npx drizzle-pgkit-migrator migrate --migrations-dir src/db/migrations up
 npx drizzle-pgkit-migrator migrate --migrations-dir src/db/migrations list
+npx drizzle-pgkit-migrator migrate --migrations-dir src/db/migrations pending
+npx drizzle-pgkit-migrator migrate --migrations-dir src/db/migrations executed
 ```
-
-Everything after the migrator-level options is forwarded to `@pgkit/migrator`'s own CLI.
 
 ### `backfill`
 
