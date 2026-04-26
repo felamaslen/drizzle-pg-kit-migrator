@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import assert from "node:assert";
+import { realpathSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 import { Command, CommanderError } from "commander";
@@ -270,10 +271,19 @@ export async function main(argv: string[] = process.argv): Promise<number> {
   }
 }
 
-const invokedDirectly =
-  process.argv[1] !== undefined &&
-  fileURLToPath(import.meta.url) === process.argv[1];
+// `process.argv[1]` is typically the bin symlink (e.g. `node_modules/.bin/...`)
+// while `import.meta.url` is the real `dist/cli.js` path. Resolve both to
+// real paths before comparing so the bin entry actually runs.
+function isInvokedAsScript(): boolean {
+  const entry = process.argv[1];
+  if (!entry) return false;
+  try {
+    return fileURLToPath(import.meta.url) === realpathSync(entry);
+  } catch {
+    return false;
+  }
+}
 
-if (invokedDirectly) {
+if (isInvokedAsScript()) {
   process.exit(await main());
 }
