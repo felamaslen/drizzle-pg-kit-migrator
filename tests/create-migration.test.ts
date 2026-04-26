@@ -9,8 +9,6 @@ import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { afterAll, beforeAll, describe, expect, it } from "vitest";
-
 import { createMigration } from "../src/create-migration.js";
 import { generateSchemaSql } from "../src/generate-schema.js";
 

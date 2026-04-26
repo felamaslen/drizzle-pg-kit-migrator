@@ -1,8 +1,12 @@
 src
 tests
 examples
+coverage
 .github
 docker-compose.yml
 vitest.config.ts
+eslint.config.js
+.prettierrc.json
 tsconfig.json
+tsconfig.build.json
 .gitignore

@@ -26,13 +26,15 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.build.json",
     "prepublishOnly": "npm run build",
     "dev": "tsx src/cli.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint --max-warnings=0 .",
     "lint:fix": "eslint --fix .",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
     "test:db:up": "docker compose up -d --wait",
     "test:db:down": "docker compose down -v",
     "prepare": "simple-git-hooks"
@@ -62,6 +64,7 @@
     "@eslint/js": "^9.39.4",
     "@types/node": "^24.0.0",
     "@types/pg": "^8.20.0",
+    "@vitest/coverage-v8": "^4.1.5",
     "drizzle-kit": "^0.31.10",
     "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",

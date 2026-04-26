@@ -1,5 +1,9 @@
 # drizzle-pgkit-migrator
 
+[![test](https://github.com/felamaslen/drizzle-pgkit-migrator/actions/workflows/test.yml/badge.svg)](https://github.com/felamaslen/drizzle-pgkit-migrator/actions/workflows/test.yml)
+[![codecov](https://codecov.io/gh/felamaslen/drizzle-pgkit-migrator/branch/main/graph/badge.svg)](https://codecov.io/gh/felamaslen/drizzle-pgkit-migrator)
+[![npm](https://img.shields.io/npm/v/drizzle-pgkit-migrator.svg)](https://www.npmjs.com/package/drizzle-pgkit-migrator)
+
 CLI glue between [drizzle-kit](https://orm.drizzle.team/kit-docs/overview) and [`@pgkit/migrator`](https://www.npmjs.com/package/@pgkit/migrator) / [`@pgkit/migra`](https://www.npmjs.com/package/@pgkit/migra).
 
 ## Motivation

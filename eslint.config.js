@@ -48,4 +48,25 @@ export default [
     },
   },
   prettierConfig,
+  {
+    files: ["tests/**/*.ts"],
+    languageOptions: {
+      globals: {
+        // vitest globals (matches `globals: true` in vitest.config.ts).
+        afterAll: "readonly",
+        afterEach: "readonly",
+        assert: "readonly",
+        beforeAll: "readonly",
+        beforeEach: "readonly",
+        chai: "readonly",
+        describe: "readonly",
+        expect: "readonly",
+        it: "readonly",
+        suite: "readonly",
+        test: "readonly",
+        vi: "readonly",
+        vitest: "readonly",
+      },
+    },
+  },
 ];
